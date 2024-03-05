@@ -1,0 +1,21 @@
+name: Node Test and Deploy
+
+on:
+  push
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build_and_test:
+    runs_on: ubuntu_latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install Dependencies
+        run: npm install
+      - name: Run Tests
+        run: npm test
